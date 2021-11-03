@@ -36,4 +36,40 @@ namespaces.on('connection', function(socket) {
 
 });
 
+/*
+
+Stolley Cheat-sheet
+
+const mp_namespaces = io.of(/^\/[a-z]{4}\-[a-z]{4}\-[a-z]{4}$/);
+
+mp_namespaces.on('connect', function(socket) {
+
+  const namespace = socket.nsp;
+
+  const peers = [];
+
+  for (let peer of namespace.sockets.keys()) {
+    peers.push(peer);
+  }
+
+  console.log(`    Socket namespace: ${namespace.name}`);
+
+  // Send the array of connected-peer IDs to the connecting peer
+  socket.emit('connected peers', peers);
+
+  // Send the connecting peer ID to all connected peers
+  socket.broadcast.emit('connected peer', socket.id);
+
+  socket.on('signal', function({ to, from, signal }) {
+    socket.to(to).emit('signal', { to, from, signal });
+  });
+
+  socket.on('disconnect', function() {
+    namespace.emit('disconnected peer', socket.id);
+  });
+
+});
+
+*/
+
 module.exports = { app, io };
