@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-const namespaces = io.of(/^\/[0-9]{6}$/);
+const namespaces = io.of(/^\/[a-z]{3}\-[a-z]{4}\-[a-z]{3}$/)
 
 namespaces.on('connection', function(socket) {
   const namespace = socket.nsp;
@@ -40,7 +40,7 @@ namespaces.on('connection', function(socket) {
 
 Stolley Cheat-sheet
 
-const mp_namespaces = io.of(/^\/[a-z]{4}\-[a-z]{4}\-[a-z]{4}$/);
+const mp_namespaces = io.of(/^\/[a-z]{3}\-[a-z]{4}\-[a-z]{3}$/);
 
 mp_namespaces.on('connect', function(socket) {
 
