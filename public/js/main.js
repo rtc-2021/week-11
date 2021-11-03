@@ -77,7 +77,6 @@ function joinCall() {
 }
 
 function leaveCall() {
-  self.isPolite = false;
   sc.close();
   resetCall($peer);
 }
