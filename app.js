@@ -25,6 +25,12 @@ namespaces.on('connection', function(socket) {
 
   socket.broadcast.emit('connected peer');
 
+  // keep interlopers off a peer-to-peer, aka
+  // one-to-one call
+  if (namespace.sockets.size > 2) {
+    return;
+  }
+
   // listen for signals
   socket.on('signal', function(signal) {
     socket.broadcast.emit('signal', signal);
