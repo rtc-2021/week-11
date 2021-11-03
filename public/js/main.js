@@ -194,22 +194,25 @@ function handleRtcConnectionStateChange() {
 function registerScCallbacks() {
   sc.on('connect', handleScConnect);
   sc.on('connected peer', handleScConnectedPeer);
+  sc.on('connected peers', handleScConnectedPeers);
   sc.on('disconnected peer', handleScDisconnectedPeer);
   sc.on('signal', handleScSignal);
 }
 
 function handleScConnect() {
   console.log('Successfully connected to the signaling server!');
-  establishCallFeatures($peer);
 }
 
-function handleScConnectedPeer() {
-  $self.isPolite = true;
+function handleScConnectedPeer(id) {
+  console.log('Heard new connected peer ID:', id);
 }
 
-function handleScDisconnectedPeer() {
-  resetCall($peer);
-  establishCallFeatures($peer);
+function handleScConnectedPeers(ids) {
+  console.log('Received already-connected peer IDs', ids.join(', '));
+}
+
+function handleScDisconnectedPeer(id) {
+  console.log('Heard new disconnected peer ID:', id);
 }
 
 function resetAndRetryConnection(peer) {
