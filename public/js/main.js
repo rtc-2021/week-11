@@ -6,16 +6,10 @@
 
 const $self = {
   rtcConfig: null,
-  isPolite: false,
-  isMakingOffer: false,
-  isIgnoringOffer: false,
-  isSettingRemoteAnswerPending: false,
   mediaConstraints: { audio: false, video: true }
 };
 
-const $peer = {
-  connection: new RTCPeerConnection($self.rtcConfig)
-};
+const $peers = {};
 
 
 
